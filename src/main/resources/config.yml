@@ -1,0 +1,53 @@
+# NexusCuisine configuration.
+# Shared, tunable numbers only -- the dish catalog (which real vanilla items are tracked,
+# their baseline nutrition/saturation/eat-time) and the quality-tier/spoilage-stage multipliers
+# are fixed, game-balance data in code (DishCatalog / DishQuality / SpoilageStage), not here.
+
+enabled: true
+
+skill:
+  # Real level cap for cooking skill.
+  max-level: 40
+  # XP required for level n follows xp-base * n^1.5, rounded.
+  xp-base: 10.0
+
+quality:
+  # Base weight of each tier at skill level 1 with neutral (0.5) ingredient freshness.
+  weight-burnt: 30.0
+  weight-plain: 55.0
+  weight-hearty: 12.0
+  weight-exquisite: 2.7
+  weight-masterwork: 0.3
+  # Per level above 1, this much weight shifts off Burnt/Plain and onto Hearty/Exquisite/Masterwork.
+  skill-shift-per-level: 1.1
+  # How much a full swing in ingredient freshness (stale to fresh) can shift weight the same way.
+  freshness-shift-max: 18.0
+
+spoilage:
+  # Real minutes from freshly cooked (freshness 1.0) to fully spoiled (freshness 0.0).
+  window-minutes: 90
+  # Multiplier real elapsed time is scaled by while a dish is wrapped for preservation.
+  preservation-multiplier: 0.25
+
+furnace-ownership:
+  # How many real minutes a player who last opened a furnace/campfire is still credited as the
+  # one cooking there once it actually finishes.
+  window-minutes: 10
+
+economy:
+  # How much one resolved consumption of a category's dish bumps that category's scarcity index up.
+  consumption-bump: 0.015
+  # How much one resolved cook of a category's dish pulls that category's scarcity index down.
+  supply-bump: 0.02
+  # Per decay interval, how far every category's index drifts back toward the 1.0 baseline.
+  decay-per-interval: 0.01
+  min-index: 0.5
+  max-index: 2.0
+  # How many emeralds of real MerchantRecipe#setSpecialPrice swing one full unit of scarcity
+  # deviation is worth.
+  special-price-scale: 3.0
+  # How much real MerchantRecipe#setDemand a freshly-acquired trade starts pre-loaded with per
+  # unit of scarcity deviation above baseline.
+  demand-scale: 4.0
+  # Real minutes between each scheduled scarcity-index decay tick.
+  decay-interval-minutes: 5
